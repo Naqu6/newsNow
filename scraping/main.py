@@ -1,7 +1,7 @@
 import cnn
 import time
 
-def update(database):
+def update(article_database, content_database):
 	while 1:
-		cnn.update(database)
+		cnn.update(article_database, content_database)
 		time.sleep(300)
