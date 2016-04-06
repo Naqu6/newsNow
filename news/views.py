@@ -8,5 +8,9 @@ scrape_thread = threading.Thread(target=scraping.update, args = (Article, Conten
 scrape_thread.daemon = True
 scrape_thread.start()
 
+def search(query):
+	return scraping.search(query)
+
+
 def index(req):
 	return "Hi"

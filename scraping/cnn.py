@@ -37,12 +37,13 @@ def add_to_database(article, article_database, content_database):
 		print title
 		Article_Object = article_database.objects.create(url = article[URL_POSITION], title = title, body = body, image = image)
 		Article_Object.save()
+
 		body = body.lower()
+		body = re.sub(r"<.*?>", '', body)
 		for word in constants.EXCLUDED_WORDS:
-			body.replace(word, chr(0))
+			body = body.replace(word, chr(0))
 
 		body = body.split(chr(0))
-		print len(body)
 		for phrase in body:
 			content_database.objects.create(phrase = phrase, article = Article_Object, date = dateutil.parser.parse(article[DATE_POSITION])).save()
 
